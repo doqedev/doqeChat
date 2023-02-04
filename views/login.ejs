@@ -1,51 +1,59 @@
 <html>
-  <head>
-    <title>...</title>
-    <script src="/repl-auth-v2.js"></script>
-    <link href="/replit.min.css" rel="stylesheet" type="text/css">
-    <script src="https://auth.magic.link/sdk"></script>
-    <style>
-      .main {
-        margin: 2%;
-        padding: 1%;
-        width: 92%;
-        height: 86%;
-      }
-      .main .cd {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 27%;
-      }
-      * {
-        overflow: hidden
-      }
-      button {
-        width: 75%;
-        align-text: center;
-        align-content: center;
-      }
-    </style>
-  </head>
-  <body>
 
-    <card class="main">
-      <div class="cd">
-        <p>You need to login to access this site!</p>
-        <button class="colored" onclick="LoginWithReplit()"><replit></replit>&nbsp;&nbsp;Login with Replit</button>
-        <br>
-        <br>
-        <button class="colored" onclick="window.location=`/magicLogin`">Others</button>
-      </div>
-    </card>
-
-  </body>
-  <script>
-    function iframe(){
-      return window.location !== window.parent.location
+<head>
+  <title>...</title>
+  <script src="/repl-auth-v2.js"></script>
+  <link href="/replit.min.css" rel="stylesheet" type="text/css">
+  <script src="https://auth.magic.link/sdk"></script>
+  <style>
+    .main {
+      margin: 2%;
+      padding: 1%;
+      width: 92%;
+      height: 86%;
     }
 
-    document.getElementById('app').innerHTML = html;
- };
-  </script>
+    .main .cd {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 27%;
+    }
+
+    * {
+      overflow: hidden
+    }
+
+    button {
+      width: 75%;
+      align-text: center;
+      align-content: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <card class="main">
+    <div class="cd">
+      <p>You need to login to access this site!</p>
+      <button class="colored" onclick="LoginWithReplit()">
+        <replit></replit>&nbsp;&nbsp;Login with Replit
+      </button>
+      <br>
+      <br>
+      <!-- <button class="colored" onclick="window.location=`/magicLogin`">Others</button> -->
+    </div>
+  </card>
+
+</body>
+<script>
+  function iframe() {
+    return window.location !== window.parent.location
+  }
+
+  document.getElementById('app').innerHTML = html;
+//  };
+</script>
+
 </html>
