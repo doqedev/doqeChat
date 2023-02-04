@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <title>...</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <link href="/replit.min.css" rel="stylesheet" type="text/css">
+    <link href="/style.css" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+  </head>
+  <body>
+
+    <card>
+      <div class="chatdiv">
+        
+      </div>
+      <input type="text" placeholder="Send a message here!" class="txt">
+    </card>
+
+  </body>
+  <script>
+    const txt = document.querySelector('.txt')
+    function iframe(){
+      return window.location !== window.parent.location
+    }
+
+    function render(msg) {
+      const p = document.createElement("p")
+      p.innerHTML = msg
+      document.querySelector(".chatdiv").appendChild(p)
+    }
+
+    const socket = io()
+
+    socket.on('message', (author,message, id) => {
+      if(id != socket.id){
+        render(`[${author}]: ${message}`)
+      }
+    })
+    txt.addEventListener("keypress", (key) => {
+      if(key.keyCode == 13){
+        const val = txt.value
+        txt.value = ""
+        let suc = true
+
+        if(val.trim().startsWith("/clear")){
+          suc = false
+          $(".chatdiv").empty()
+        }
+        if(val.trim() == "") return;
+        if(!suc) return;
+        socket.emit("send", val)
+        render(`[<%= user %>]: ${val}`)
+      }
+    })
+  </script>
+</html>

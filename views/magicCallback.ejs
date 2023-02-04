@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <title>...</title>
+    <script src="/repl-auth-v2.js"></script>
+    <link href="/replit.min.css" rel="stylesheet" type="text/css">
+    <script src="https://auth.magic.link/sdk"></script>
+    <style>
+      .main {
+        margin: 2%;
+        padding: 1%;
+        width: 92%;
+        height: 86%;
+      }
+      .main .cd {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 27%;
+      }
+      button {
+        width: 75%;
+        align-text: center;
+        align-content: center;
+      }
+    </style>
+  </head>
+  <body>
+
+    <script
+    src="https://auth.magic.link/pnp/callback"
+    data-magic-publishable-api-key="pk_live_3218CF8E5EBA6ABD">
+  </script>
+
+  <!-- Use data from Magic! -->
+
+    <card>
+      <div class="page">
+    <div class="data">
+      <label>window.Magic.user.getIdToken()</label>
+      <pre id="idToken">Loading...</pre>
+    </div>
+
+    <div class="data">
+      <label>window.Magic.user.getMetadata()</label>
+      <pre id="userMetadata">Loading...</pre>
+    </div>
+
+    <div class="data">
+      <label>window.Magic.oauth.getRedirectResult()</label>
+      <pre id="oauth">Loading...</pre>
+    </div>
+
+    <a href="/logout">Logout</a>
+  </div>
+    </card>
+
+  <script>
+    window.addEventListener('@magic/ready', (e) => {
+      const { idToken, userMetadata, oauth } = e.detail;
+
+      const idTokenEl = document.getElementById('idToken');
+      const userMetadataEl = document.getElementById('userMetadata');
+      const oauthEl = document.getElementById('oauth');
+
+      idTokenEl.innerText = JSON.stringify(idToken, null, 2);
+      userMetadataEl.innerText = JSON.stringify(userMetadata, null, 2);
+      oauthEl.innerText = JSON.stringify(oauth, null, 2);
+    });
+  </script>
+
+  </body>
+</html>
